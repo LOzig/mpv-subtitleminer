@@ -6,7 +6,8 @@ This is a tool for mpv to enable language learning with subtitle files. We send 
 
 ## Demo
 
-https://github.com/user-attachments/assets/6d35489f-a1f9-4766-b780-c5485ac8107a
+https://github.com/user-attachments/assets/47437d89-54f1-4039-bd17-d1fb8b453725
+
 
 ## Features
 
