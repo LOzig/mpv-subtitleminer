@@ -79,6 +79,8 @@
   const loadingModels = ref(false)
   const modelsError = ref<string | null>(null)
   const localSettings = ref<AnkiSettings>({ ...settings.value.anki })
+  const localConnection = ref<ConnectionSettings>({ ...settings.value.connection })
+  const localPortInput = ref('')
 
   const modelNames = computed(() => Object.keys(modelsWithFields.value).sort())
   const availableFields = computed(() => {
@@ -87,12 +89,16 @@
   })
   const settingsValid = computed(() => {
     const { noteType, sentenceField, audioField, imageField } = localSettings.value
-    return !!noteType && (!!sentenceField || !!audioField || !!imageField)
+    // Allow saving if Anki is not configured
+    if (!noteType) return true
+    return !!sentenceField || !!audioField || !!imageField
   })
 
   watch(showSettings, (isOpen) => {
     if (isOpen) {
       localSettings.value = { ...settings.value.anki }
+      localConnection.value = { ...settings.value.connection }
+      localPortInput.value = localConnection.value.ports.join(', ')
       if (connectionStatus.value === 'untested') {
         void testConnection()
       }
@@ -145,6 +151,7 @@
 
   function saveSettings() {
     settings.value.anki = { ...localSettings.value }
+    settings.value.connection = { ...localConnection.value }
     showSettings.value = false
     toast.success('Settings saved')
   }
@@ -186,38 +193,24 @@
   const targetCardPreview = ref<string | null>(null)
   const loadingTargetCard = ref(false)
 
-  const host = computed({
-    get: () => settings.value.connection.host,
-    set: (value: string) => {
-      settings.value.connection.host = value
-    },
-  })
-  const ports = computed({
-    get: () => settings.value.connection.ports,
-    set: (value: number[]) => {
-      settings.value.connection.ports = value
-    },
-  })
-  const portInput = ref(ports.value.join(', '))
+  const host = computed(() => settings.value.connection.host)
+  const ports = computed(() => settings.value.connection.ports)
 
-  watch(ports, (newPorts) => {
-    portInput.value = newPorts.join(', ')
-  })
-
-  function updatePorts(raw: string) {
-    portInput.value = raw
+  function updateLocalPorts(raw: string) {
+    localPortInput.value = raw
     const parsed = raw
       .split(/[\s,]+/)
       .map((v) => parseInt(v, 10))
       .filter((n) => Number.isInteger(n) && n > 0 && n <= 65535)
     if (parsed.length) {
-      ports.value = parsed
+      localConnection.value.ports = parsed
     }
   }
 
-  function resetConnectionDefaults() {
-    host.value = defaultSettings.connection.host
-    ports.value = [...DEFAULT_PORTS]
+  function resetLocalConnectionDefaults() {
+    localConnection.value.host = defaultSettings.connection.host
+    localConnection.value.ports = [...DEFAULT_PORTS]
+    localPortInput.value = localConnection.value.ports.join(', ')
   }
 
   const ws = useWebSocket({
@@ -761,25 +754,8 @@
         </span>
       </div>
       <div class="controls">
-        <label class="field">
-          <span>IP</span>
-          <input v-model="host" type="text" class="input" />
-        </label>
-        <label class="field">
-          <span>Ports</span>
-          <input
-            :value="portInput"
-            type="text"
-            class="input"
-            placeholder="61777, 61778"
-            @input="(e) => updatePorts((e.target as HTMLInputElement).value)"
-          />
-        </label>
         <button class="btn" type="button" @click="ws.connect">Connect</button>
         <button class="btn ghost" type="button" @click="ws.disconnect">Disconnect</button>
-        <button class="btn ghost" type="button" @click="resetConnectionDefaults">
-          Reset Connection
-        </button>
         <button class="btn ghost" type="button" @click="showSettings = true">⚙ Settings</button>
       </div>
     </header>
@@ -926,6 +902,34 @@
           </header>
 
           <div class="modal-body">
+            <section class="section">
+              <div class="section-header">
+                <h3>MPV Connection</h3>
+                <button class="btn ghost inline" @click="resetLocalConnectionDefaults">
+                  Reset to defaults
+                </button>
+              </div>
+              <div class="form-grid">
+                <label class="form-group">
+                  <span>Host IP</span>
+                  <input
+                    v-model="localConnection.host"
+                    type="text"
+                    placeholder="127.0.0.1"
+                  />
+                </label>
+                <label class="form-group">
+                  <span>Ports (comma separated)</span>
+                  <input
+                    :value="localPortInput"
+                    type="text"
+                    placeholder="61777, 61778"
+                    @input="(e) => updateLocalPorts((e.target as HTMLInputElement).value)"
+                  />
+                </label>
+              </div>
+            </section>
+
             <section class="section">
               <div class="section-header">
                 <h3>AnkiConnect</h3>
