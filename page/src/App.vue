@@ -4,6 +4,7 @@
   import { useWebSocket } from './composables/useWebSocket'
   import * as anki from './services/ankiConnect'
   import { isJsonObject, type JsonObject, type JsonValue } from './types/json'
+  import { preserveHtmlTags } from './utils/htmlUtils'
 
   const DEFAULT_PORTS = [61777, 61778, 61779, 61780, 61781]
 
@@ -561,7 +562,8 @@
 
       if (sentenceField) {
         const text = selectedMsgs.map((m) => m.subtitle).join(' ')
-        fieldUpdates[sentenceField] = text
+        const existingSentence = targetNote.fields[sentenceField]?.value ?? ''
+        fieldUpdates[sentenceField] = preserveHtmlTags(existingSentence, text)
       }
 
       if (audioField) {
