@@ -3,15 +3,11 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
-			"version": "22"
-		}
-	},
 	"forwardPorts": [
 		61777,
 		5173
 	],
+	"postCreateCommand": "sudo mkdir -p /home/vscode/.codex && sudo chown -R vscode:vscode /home/vscode/.codex",
 	"mounts": [
 		{
 			"source": "/tmp",
@@ -21,6 +17,11 @@
 		{
 			"source": "devcontainer-cargo-cache-${devcontainerId}",
 			"target": "/usr/local/cargo",
+			"type": "volume"
+		},
+		{
+			"source": "devcontainer-codex-cache-${localEnv:USER}",
+			"target": "/home/vscode/.codex",
 			"type": "volume"
 		}
 	],
